@@ -1,0 +1,45 @@
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        margin-top: 10px; /* Added */
+        min-width: 100px;
+}
+
+body {
+	min-width: 100px;
+}
+
+#backToStart {
+	margin-top: 20px;
+}
+
+.btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover
+{
+color: #fff;
+background-color: #161617; 
+border-color: #494F57; 
+}
+form{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.small, small{
+	color: red;
+}
+button #submitButton{
+	float: right;
+}
+div.row{
+	margin-bottom: 20px;
+}
+select#SelectYear{
+	min-width: 90px;
+}
+select#SelectMonth, select#SelectDay{
+	min-width: 65px;
+}
+button#copySMS{
+	margin-top: 0px;
+	float: right;
+}
