@@ -2,6 +2,7 @@ $( document ).ready(function() {
   $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Внимание!</h5></div><p class="card-text">Cайт позволяет сгенерировать <b>код для отправки заявки</b> на получение цифрового пропуска по СМС. То, что вы получите по окончанию заполнения формы <b>не является пропуском!</b></p><p class="card-text">Для оформления заявки вы должны будете скопировать полученный код (сообщение) и <b>самостоятельно отправить его на номер <i>7377</i></b>. После этого вы получите ответ по СМС.</p><p class="card-text">Мы не собираем и не храним введенную вами информацию.</p><a id="start" class="btn btn-primary btn-block">Продолжить</a></div></div>');
 });
 
+
 $(document).on("click", "a.btn", function() {
   var id = $(this).attr('id');
   if (id == "start"){
@@ -127,7 +128,6 @@ $(document).on("click", "a.btn.target", function() {
   var id = $(this).attr('id');
 
   if (id == "backToTarget"){
-    alert('ok');
       location.reload();
     }
 
@@ -229,7 +229,6 @@ function selectTransport(){
 
   $(document).on("click", "button#submitButtonTrans", function() {
     if ($('.needs-validation').bootstrapValidator('validate').has('.has-error').length==0){
-      alert ('call submitButtonTrans');
       if(window.id=='auto'){
         window.auto = $('#formGroupInput1').val();
       }
@@ -285,11 +284,11 @@ function createSMS(){
   $(document).on("click", "button#sendSMS", function() {
     // for andriod
     if(navigator.userAgent.match(/Android/i)) {
-      window.open("sms://7377/?body=encodeURIComponent('"+msgText+"'),'_blank'")
+      window.open("sms:7377?body=encodeURIComponent('"+msgText+"'),'_blank'")
     }
     // for IOS
     if(navigator.userAgent.match(/iPhone/i)) {
-      window.open("sms://7377/&body=body=encodeURIComponent('"+msgText+"'),'_blank'")
+      window.open("sms:7377&body=encodeURIComponent('"+msgText+"'),'_blank'")
     }
   });
 
