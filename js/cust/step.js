@@ -200,7 +200,7 @@ function selectTransport(){
 
     if(id=='auto'){
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Введите номер транспортного средства</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="8" maxlength="8" class="form-control form-control-lg" id="formGroupInput1" name="AutoNum" placeholder="АА123А12" required></div><button class="btn btn-success" id="submitButtonTrans" type="button">Далее</button></form><a href="#" id="backToTrans" class="btn btn-primary btn-block ">Назад к выбору транспорта ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Введите номер транспортного средства</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="9" maxlength="9" class="form-control form-control-lg" id="formGroupInput1" name="AutoNum" placeholder="А123АА12 или А123АА123" required></div><button class="btn btn-success" id="submitButtonTrans" type="button">Далее</button></form><a href="#" id="backToTrans" class="btn btn-primary btn-block ">Назад к выбору транспорта ↩</a></div></div>');
       //валидация
       validate();
 
@@ -392,9 +392,9 @@ function validate(){
                   message: '⚠️ Номер транспортного средства не может быть незаполненным<br>'
               },
               stringLength: {
-                  min: 6,
-                  max: 6,
-                  message: '⚠️ Номер транспортного средства должен содержать ровно 8 знаков<br>'
+                  min: 8,
+                  max: 9,
+                  message: '⚠️ Номер транспортного средства не может содержать меньше 8 знаков<br>'
               },
               regexp: {
                   regexp: /(([А-Я]\d{3}[А-Я]{1,2})(\d{2,3})|(\d{4}[А-Я]{2})(\d{2})|(\d{3}C?D{1,2}\d{3})(\d{2})|([А-Я]{2}\d{3}[А-Я])(\d{2})|([А-Я]\d{4})(\d{2})|(\d{3}[А-Я])(\d{2})|(\d{4}[А-Я])(\d{2}))/i, 
