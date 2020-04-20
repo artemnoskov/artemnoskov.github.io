@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-  alert('ok');
   $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Внимание!</h5></div><p class="card-text">Cайт позволяет сгенерировать <b>код для отправки заявки</b> на получение цифрового пропуска по СМС. То, что вы получите по окончанию заполнения формы <b>не является пропуском!</b></p><p class="card-text">Для оформления заявки вы должны будете скопировать полученный код (сообщение) и <b>самостоятельно отправить его на номер <i>7377</i></b>. После этого вы получите ответ по СМС.</p><p class="card-text">Мы не собираем и не храним введенную вами информацию.</p><a id="start" class="btn btn-primary btn-block">Продолжить</a></div></div>');
 });
 
