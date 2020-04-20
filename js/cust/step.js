@@ -284,11 +284,11 @@ function createSMS(){
   $(document).on("click", "button#sendSMS", function() {
     // for andriod
     if(navigator.userAgent.match(/Android/i)) {
-      window.open("sms:7377?body=encodeURIComponent('"+msgText+"'),'_blank'")
+      window.open("sms:7377?body="+msgText);
     }
     // for IOS
     if(navigator.userAgent.match(/iPhone/i)) {
-      window.open("sms:7377&body=encodeURIComponent('"+msgText+"'),'_blank'")
+      window.open("sms:7377&body="+msgText);
     }
   });
 
