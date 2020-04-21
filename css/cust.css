@@ -40,6 +40,7 @@ select#SelectYear{
 select#SelectMonth, select#SelectDay{
 	min-width: 65px;
 	font-size: 16px;
+	padding-left: 5px;
 }
 button#copySMS{
 	margin-top: 0px;
