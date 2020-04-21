@@ -34,10 +34,12 @@ div.row{
 	margin-bottom: 20px;
 }
 select#SelectYear{
-	min-width: 90px;
+	min-width: 100px;
+	font-size: 16px;
 }
 select#SelectMonth, select#SelectDay{
 	min-width: 65px;
+	font-size: 16px;
 }
 button#copySMS{
 	margin-top: 0px;
