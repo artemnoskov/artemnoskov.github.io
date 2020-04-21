@@ -1,12 +1,28 @@
 $( document ).ready(function() {
-  $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Генератор получения кода для цифрового пропуска по СМС</h5></div><p class="card-text">Cайт позволяет сгенерировать <b>код для отправки заявки</b> на получение цифрового пропуска по СМС. То, что вы получите по окончанию заполнения формы <b>не является пропуском!</b></p><p class="card-text">Для оформления заявки вы должны будете скопировать полученный код (сообщение) и <b>самостоятельно отправить его на номер <i>7377</i></b>. После этого вы получите ответ по СМС.</p><p class="card-text">Мы не собираем и не храним введенную вами информацию.</p><a id="start" class="btn btn-primary btn-block">Продолжить</a></div></div>');
+  $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Генератор получения кода для цифрового пропуска по СМС</h5></div><p class="card-text">Cайт позволяет сгенерировать <b>код для отправки заявки</b> на получение цифрового пропуска по СМС. То, что вы получите по окончанию заполнения формы <b>не является пропуском!</b></p><p class="card-text">Для оформления заявки вы должны будете скопировать полученный код и <b>самостоятельно отправить его на номер <i>7377</i> – для Москвы, либо <i>0250</i> для жителей Подмосковья</b> После этого вы получите ответ по СМС.</p><p class="card-text"><b>Мы не собираем и не храним введенную вами информацию.</b></p><a id="regionSelect" class="btn btn-primary btn-block">Продолжить</a></div></div>');
 });
 
+$(document).on("click", "a.btn", function() {
+  var id = $(this).attr('id');
+  if (id == "regionSelect"){
+    $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light begging">В начало ↩</a><div class="card-body text-justify"><div class="card-header text-center"><h5>Выберите регион</h5></div><div class="btn-group btn-group-toggle btn-group-block selectregionButtonBlock" data-toggle="buttons"><label class="btn btn-outline-secondary active"><input type="radio" name="options" id="option1" autocomplete="off" checked>Москва</label><label class="btn btn-outline-secondary"><input type="radio" name="options" id="option2" autocomplete="off">Подмосковье</label></div><a id="start" class="btn btn-success btn-block">Продолжить</a></div></div>');
+
+  }
+});
 
 $(document).on("click", "a.btn", function() {
   var id = $(this).attr('id');
   if (id == "start"){
-    $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Выберите цель поездки</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="forJob" class="btn target btn-outline-secondary btn-block">Для работающих</a></li><li class="list-group-item"><a href="#" id="forMed" class="btn target btn-outline-success btn-block">Для посещения медицинских организаций</a></li><li class="list-group-item"><a href="#" id="forOther" class="btn target btn-outline-info btn-block">Для иных целей</a></li><li class="list-group-item"><a href="#" id="forDuty" class="btn target btn-outline-warning btn-block">Для служащих</a></li></ul><a href="#" id="backToStart" class="btn btn-primary btn-block">В начало ↩</a></div></div></div>');
+
+    if ($("#option1").is(":checked")){
+      window.region = 'mos';
+    }
+
+    else if ($("#option2").is(":checked")) {
+      window.region = 'obl';
+    }
+
+    $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Выберите цель поездки</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="forJob" class="btn target btn-outline-secondary btn-block">Для работающих</a></li><li class="list-group-item"><a href="#" id="forMed" class="btn target btn-outline-success btn-block">Для посещения медицинских организаций</a></li><li class="list-group-item"><a href="#" id="forOther" class="btn target btn-outline-info btn-block">Для иных целей</a></li><li class="list-group-item"><a href="#" id="forDuty" class="btn target btn-outline-warning btn-block">Для служащих</a></li></ul><a href="#" id="backToStart" class="btn btn-light btn-block">В начало ↩</a></div></div></div>');
   }
 
   if (id == "backToStart"){
@@ -21,7 +37,7 @@ $(document).on("click", "a.btn.target", function() {
   if (id == "forJob"){
     window.target='1';
     //форма
-    $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Организация</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="OrgSNN" placeholder="ИНН организации" required></div><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="OrgName" placeholder="Название организации"></div><button class="btn btn-success" id="submitButton" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block begging">В начало ↩</a></div></div>');
+    $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light begging">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Организация</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="OrgSNN" placeholder="ИНН организации" required></div><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="OrgName" placeholder="Название организации"></div><button class="btn btn-success btn-block" id="submitButton" type="button">Далее</button></form></div></div>');
 
     //валидация
     validate();
@@ -43,7 +59,7 @@ $(document).on("click", "a.btn.target", function() {
     window.target='2';
 
     //форма
-    $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Медицинская организация</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="MedName" placeholder="Название организации" required></div><small id="HelpBlock" class="form-text text-muted">Дата рождения</small><div class="row"><div class="col-3"><select class="form-control form-control-lg" id="SelectDay"></select></div><div class="col-3"><select class="form-control form-control-lg" id="SelectMonth"></select></div><div class="col-4"><select class="form-control form-control-lg" id="SelectYear"></select></div></div><button class="btn btn-success" id="submitButton" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block begging">В начало ↩</a></div></div>');
+    $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light begging">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Медицинская организация</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="MedName" placeholder="Название организации" required></div><small id="HelpBlock" class="form-text text-muted">Дата рождения</small><div class="row"><div class="col-3"><select class="form-control form-control-lg" id="SelectDay"></select></div><div class="col-3"><select class="form-control form-control-lg" id="SelectMonth"></select></div><div class="col-4"><select class="form-control form-control-lg" id="SelectYear"></select></div></div><button class="btn btn-success btn-block" id="submitButton" type="button">Далее</button></form></div></div>');
 
     for (i = new Date().getFullYear(); i > 1900; i--)
     {
@@ -87,7 +103,7 @@ $(document).on("click", "a.btn.target", function() {
     window.target='3';
     
     //форма
-    $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Иная цель</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="20" class="form-control form-control-lg" id="formGroupInput1" name="TripCause" placeholder="Цель выхода" required></div><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="TripAddr" placeholder="Адрес" required></div><button class="btn btn-success" id="submitButton" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block begging">В начало ↩</a></div></div>');
+    $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light begging">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Иная цель</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="20" class="form-control form-control-lg" id="formGroupInput1" name="TripCause" placeholder="Цель выхода" required></div><div class="form-group"><input type="text" class="form-control form-control-lg" id="formGroupInput2" name="TripAddr" placeholder="Адрес" required></div><button class="btn btn-success btn-block" id="submitButton" type="button">Далее</button></form></div></div>');
 
     //валидация
     validate();
@@ -106,7 +122,7 @@ $(document).on("click", "a.btn.target", function() {
   if (id == "forDuty"){
     window.target='4';
     //форма
-    $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Служебное удостоверение</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="50" class="form-control form-control-lg" id="formGroupInput1" name="DutyID" placeholder="Номер удостоверения" required></div><button class="btn btn-success" id="submitButton" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block begging">В начало ↩</a></div></div>');
+    $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light begging">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Служебное удостоверение</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="50" class="form-control form-control-lg" id="formGroupInput1" name="DutyID" placeholder="Номер удостоверения" required></div><button class="btn btn-success btn-block" id="submitButton" type="button">Далее</button></form></div></div>');
 
     //валидация
     validate();
@@ -138,7 +154,7 @@ $(document).on("click", "a.btn.target", function() {
 function selectDocument(){
   window.series = '';
   window.number = '';
-  $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Выберите тип документа</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="rfPass" class="btn doc btn-outline-secondary btn-block">Паспорт гражданина РФ</a></li><li class="list-group-item"><a href="#" id="foreignPass" class="btn doc btn-outline-success btn-block">Иностранный паспорт</a></li><li class="list-group-item"><a href="#" id="otherDoc" class="btn doc btn-outline-info btn-block">Иной документ</a></li></ul><a href="#" id="backToTarget" class="btn btn-primary btn-block ">В начало ↩</a></div></div></div>');
+  $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body text-justify"><div class="card-header text-center"><h5>Выберите тип документа</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="rfPass" class="btn doc btn-outline-secondary btn-block">Паспорт гражданина РФ</a></li><li class="list-group-item"><a href="#" id="foreignPass" class="btn doc btn-outline-success btn-block">Иностранный паспорт</a></li><li class="list-group-item"><a href="#" id="otherDoc" class="btn doc btn-outline-info btn-block">Иной документ</a></li></ul><a href="#" id="backToTarget" class="btn btn-ight ">В начало ↩</a></div></div></div>');
 
   $(document).on("click", "a.btn.doc", function() {
     var id = $(this).attr('id');
@@ -146,7 +162,7 @@ function selectDocument(){
     if(id=='rfPass'){
       window.docType = '1';
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Данные документа</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="4" maxlength="4" class="form-control form-control-lg" id="formGroupInput1" name="Series" placeholder="Серия" required></div><div class="form-group"><input type="text" size="6" maxlength="6"class="form-control form-control-lg" id="formGroupInput2" name="Number" placeholder="Номер" required></div><button class="btn btn-success" id="submitButtonDoc" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block ">В начало ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light ">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Данные документа</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="4" maxlength="4" class="form-control form-control-lg" id="formGroupInput1" name="Series" placeholder="Серия" required></div><div class="form-group"><input type="text" size="6" maxlength="6"class="form-control form-control-lg" id="formGroupInput2" name="Number" placeholder="Номер" required></div><button class="btn btn-success btn-block" id="submitButtonDoc" type="button">Далее</button></form></div></div>');
       //валидация
       validate();
     }
@@ -161,7 +177,7 @@ function selectDocument(){
       }
 
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Данные документа</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="Series" placeholder="Серия"><small id="HelpBlock" class="form-text text-muted">Если у документа нет серии, оставьте поле пустым</small></div><div class="form-group"><input type="text" maxlength="30"class="form-control form-control-lg" id="formGroupInput2" name="Number" placeholder="Номер" required></div><button class="btn btn-success" id="submitButtonDoc" type="button">Далее</button></form><a href="#" id="backToTarget" class="btn btn-primary btn-block ">В начало ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTarget" class="btn btn-light ">В начало ↩</a><div class="card-body"><div class="card-header text-center"><h5>Данные документа</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="Series" placeholder="Серия"><small id="HelpBlock" class="form-text text-muted">Если у документа нет серии, оставьте поле пустым</small></div><div class="form-group"><input type="text" maxlength="30"class="form-control form-control-lg" id="formGroupInput2" name="Number" placeholder="Номер" required></div><button class="btn btn-success btn-block" id="submitButtonDoc" type="button">Далее</button></form></div></div>');
     }
   });
 
@@ -193,14 +209,14 @@ function selectTransport(){
   window.strelka = '';
   window.otherTrans = '';
 
-  $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Информация о способах передвижения</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="auto" class="btn trans btn-outline-secondary btn-block">Ввести номер транспортного средства</a></li><li class="list-group-item"><a href="#" id="troika" class="btn trans btn-outline-success btn-block">Ввести номер карты "Тройка"</a></li><li class="list-group-item"><a href="#" id="strelka" class="btn trans btn-outline-info btn-block">Ввести номер карты "Стрелка"</a></li><li class="list-group-item"><a href="#" id="otherTransport" class="btn trans btn-outline-warning btn-block">Другое</a></li></ul><a href="#" id="backToTarget" class="btn btn-primary btn-block ">Назад к выбору цели ↩</a></div></div></div>');
+  $( "div.dialog" ).html('<div class="dialog"><div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Информация о способах передвижения</h5></div><ul class="list-group list-group-flush"><li class="list-group-item"><a href="#" id="auto" class="btn trans btn-outline-secondary btn-block">Ввести номер транспортного средства</a></li><li class="list-group-item"><a href="#" id="troika" class="btn trans btn-outline-success btn-block">Ввести номер карты "Тройка"</a></li><li class="list-group-item"><a href="#" id="strelka" class="btn trans btn-outline-info btn-block">Ввести номер карты "Стрелка"</a></li><li class="list-group-item"><a href="#" id="otherTransport" class="btn trans btn-outline-warning btn-block">Другое</a></li></ul><a href="#" id="backToTarget" class="btn btn-light">В начало ↩</a></div></div></div>');
 
   $(document).on("click", "a.btn.trans", function() {
     window.id = $(this).attr('id');
 
     if(id=='auto'){
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Введите номер транспортного средства</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="9" maxlength="9" class="form-control form-control-lg" id="formGroupInput1" name="AutoNum" placeholder="А123АА12 или А123АА123" required></div><button class="btn btn-success" id="submitButtonTrans" type="button">Далее</button></form><a href="#" id="backToTrans" class="btn btn-primary btn-block ">Назад к выбору транспорта ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTrans" class="btn btn-light">К выбору транспорта ↩</a><div class="card-body"><div class="card-header text-center"><h5>Введите номер транспортного средства</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="9" maxlength="9" class="form-control form-control-lg" id="formGroupInput1" name="AutoNum" placeholder="А123АА12 или А123АА123" required></div><button class="btn btn-success btn-block" id="submitButtonTrans" type="button">Далее</button></form></div></div>');
       //валидация
       validate();
 
@@ -208,7 +224,7 @@ function selectTransport(){
 
     if(window.id =='troika'){
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Введите номер карты "Тройка"</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="TroikaNum" placeholder="0123456789" required></div><button class="btn btn-success" id="submitButtonTrans" type="button">Далее</button></form><a href="#" id="backToTrans" class="btn btn-primary btn-block ">Назад к выбору транспорта ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTrans" class="btn btn-light">К выбору транспорта ↩</a><div class="card-body"><div class="card-header text-center"><h5>Введите номер карты "Тройка"</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="10" maxlength="10" class="form-control form-control-lg" id="formGroupInput1" name="TroikaNum" placeholder="0123456789" required></div><button class="btn btn-success btn-block" id="submitButtonTrans" type="button">Далее</button></form></div></div>');
       //валидация
       validate();
 
@@ -216,7 +232,7 @@ function selectTransport(){
 
     if(window.id =='strelka'){
       //форма
-      $( "div.dialog" ).html('<div class="card" style="width: 90%"><div class="card-body"><div class="card-header text-center"><h5>Введите номер карты "Стрелка"</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="11" maxlength="11" class="form-control form-control-lg" id="formGroupInput1" name="StrelkaNum" placeholder="0123456789" required></div><button class="btn btn-success" id="submitButtonTrans" type="button">Далее</button></form><a href="#" id="backToTrans" class="btn btn-primary btn-block ">Назад к выбору транспорта ↩</a></div></div>');
+      $( "div.dialog" ).html('<div class="card" style="width: 90%"><a href="#" id="backToTrans" class="btn btn-light">К выбору транспорта ↩</a><div class="card-body"><div class="card-header text-center"><h5>Введите номер карты "Стрелка"</h5></div><form class="needs-validation" role="form"><div class="form-group"><input type="text" size="11" maxlength="11" class="form-control form-control-lg" id="formGroupInput1" name="StrelkaNum" placeholder="0123456789" required></div><button class="btn btn-success btn-block" id="submitButtonTrans" type="button">Далее</button></form></div></div>');
       //валидация
       validate();
     }
@@ -281,16 +297,38 @@ function createSMS(){
 
   $('.resMSG').append('<button class="btn btn-primary" id="copySMS" type="button">Скопировать</button>');
 
-  $(document).on("click", "button#sendSMS", function() {
-    // for andriod
-    if(navigator.userAgent.match(/Android/i)) {
-      window.open("sms:7377?body="+msgText);
-    }
-    // for IOS
-    if(navigator.userAgent.match(/iPhone/i)) {
-      window.open("sms:7377&body="+msgText);
-    }
-  });
+
+  //если Москва
+  if (window.region == 'mos'){
+
+      $(document).on("click", "button#sendSMS", function() {
+        // for andriod
+        if(navigator.userAgent.match(/Android/i)) {
+          window.open("sms:7377?body="+msgText);
+        }
+        // for IOS
+        if(navigator.userAgent.match(/iPhone/i)) {
+          window.open("sms:7377&body="+msgText);
+        }
+      });
+
+  }
+
+  //если Подмосковье
+  if (window.region == 'obl'){
+
+      $(document).on("click", "button#sendSMS", function() {
+        // for andriod
+        if(navigator.userAgent.match(/Android/i)) {
+          window.open("sms:0250?body="+msgText);
+        }
+        // for IOS
+        if(navigator.userAgent.match(/iPhone/i)) {
+          window.open("sms:0250&body="+msgText);
+        }
+      });
+
+  }
 
   $(document).on("click", "button#copySMS", function() {
     $('textarea#FormControlTextarea1').select();      

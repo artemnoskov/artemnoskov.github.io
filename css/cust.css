@@ -10,8 +10,12 @@ body {
 	min-width: 100px;
 }
 
-#backToStart {
+#backToStart , a#start{
 	margin-top: 20px;
+}
+a#start{
+	padding-top: 12px;
+	color: #ffffff;
 }
 
 .btn-success.active.focus, .btn-success.active:focus, .btn-success.active:hover, .btn-success:active.focus, .btn-success:active:focus, .btn-success:active:hover, .open>.dropdown-toggle.btn-success.focus, .open>.dropdown-toggle.btn-success:focus, .open>.dropdown-toggle.btn-success:hover
@@ -45,4 +49,20 @@ select#SelectMonth, select#SelectDay{
 button#copySMS{
 	margin-top: 0px;
 	float: right;
+}
+.btn-light#backToTarget, .btn-light#backToStart{
+	width: 125px;
+	margin: 10px 0px -5px 20px;
+}
+.btn-success, #copySMS{
+	height: 50px;
+}
+a#backToTrans{
+	width: 220px;
+	margin: 10px 0px -5px 20px;
+}
+
+.selectregionButtonBlock{
+	margin-top: 20px;
+	width: 100%;
 }
